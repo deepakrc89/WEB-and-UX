@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hopewell Hospital — Quality Care, Close to Home</title>
+  <meta name="description" content="Hopewell Hospital — compassionate care, advanced treatment. Book appointments, find departments, meet our doctors." />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* -----------------------------------------
+       Simple Hospital Website (single-file)
+       - Responsive layout
+       - Accessible semantic HTML
+       - Clean, modern look using CSS variables
+       -----------------------------------------*/
+
+    :root{
+      --brand:#0b6efd; /* primary blue */
+      --accent:#06b6d4; /* teal accent */
+      --muted:#6b7280;
+      --bg:#f7fafc;
+      --card:#ffffff;
+      --radius:14px;
+      --glass: rgba(255,255,255,0.6);
+      --max-width:1100px;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+      color-scheme: light;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg,var(--bg),#ffffff);
+      color:#0f172a;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+    }
+
+    .container{
+      width:clamp(300px,92%,var(--max-width));
+      margin:0 auto;
+      padding:2rem 1rem;
+    }
+
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:1rem;
+      margin-bottom:1.25rem;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:.75rem;
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .logo{
+      width:52px;height:52px;
+      background:linear-gradient(135deg,var(--brand),var(--accent));
+      border-radius:12px;
+      display:grid;place-items:center;color:white;font-weight:700;font-size:1.1rem;
+      box-shadow:0 6px 18px rgba(11,110,253,0.12);
+    }
+
+    nav ul{display:flex;gap:1rem;list-style:none;padding:0;margin:0}
+    nav a{color:var(--muted);text-decoration:none;padding:.4rem .6rem;border-radius:8px}
+    nav a:hover,nav a:focus{color:var(--brand);background:rgba(11,110,253,0.06);outline:none}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(90deg, rgba(11,110,253,0.06), rgba(6,182,212,0.03));
+      border-radius:var(--radius);
+      padding:2rem;
+      display:grid;grid-template-columns:1fr 360px;gap:1.25rem;align-items:center;
+    }
+
+    .hero h1{font-size:clamp(1.4rem,2.8vw,2.1rem);margin:0 0 0.5rem}
+    .hero p{margin:0 0 1rem;color:var(--muted)}
+
+    .cta-row{display:flex;gap:.75rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:.6rem;padding:.6rem 1rem;border-radius:10px;border:0;cursor:pointer;font-weight:600}
+    .btn-primary{background:var(--brand);color:white;box-shadow:0 8px 20px rgba(11,110,253,0.12)}
+    .btn-outline{background:transparent;border:1px solid rgba(15,23,42,0.06);color:var(--brand)}
+
+    .hero-card{
+      background:var(--card);
+      padding:1rem;border-radius:12px;box-shadow:0 8px 30px rgba(8,16,40,0.04);
+      display:flex;flex-direction:column;gap:.5rem
+    }
+
+    .stat{display:flex;justify-content:space-between;align-items:center}
+    .stat strong{font-size:1.1rem}
+    .small{font-size:.9rem;color:var(--muted)}
+
+    /* Services */
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1.25rem}
+    .service-card{background:var(--card);padding:1rem;border-radius:12px;box-shadow:0 6px 18px rgba(9,30,66,0.04)}
+    .service-card h3{margin:.25rem 0}
+    .service-card p{margin:0;color:var(--muted);font-size:.95rem}
+
+    /* Doctors */
+    .doctors{margin-top:1.5rem}
+    .doctor-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem}
+    .doctor{background:linear-gradient(180deg,var(--glass),rgba(255,255,255,0.9));padding:1rem;border-radius:12px;display:flex;gap:.75rem;align-items:center}
+    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(180deg,#fff,#f1f5f9);display:grid;place-items:center;font-weight:700}
+    .doc-meta h4{margin:0;font-size:1rem}
+    .doc-meta p{margin:0;font-size:.9rem;color:var(--muted)}
+
+    /* Appointment form */
+    form{display:grid;gap:.6rem}
+    label{font-size:.9rem;color:var(--muted)}
+    input,select,textarea{padding:.6rem .75rem;border-radius:10px;border:1px solid rgba(15,23,42,0.08);font-size:1rem}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+
+    /* Contact & Footer */
+    footer{margin-top:2rem;padding:1rem 0;border-top:1px solid rgba(15,23,42,0.04);color:var(--muted);font-size:.95rem}
+
+    /* Utilities */
+    .flex{display:flex;gap:1rem;align-items:center}
+    .pill{background:rgba(6,182,212,0.08);padding:.2rem .5rem;border-radius:999px;font-weight:600;color:var(--accent)}
+
+    /* Responsive tweaks */
+    @media (max-width:880px){
+      .hero{grid-template-columns:1fr}
+      .hero .hero-card{order:2}
+    }
+
+    @media (max-width:520px){
+      .grid-2{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="#" class="brand" aria-label="Hopewell Hospital home">
+        <div class="logo">H</div>
+        <div>
+          <div style="font-weight:700">Hopewell Hospital</div>
+          <div style="font-size:.85rem;color:var(--muted)">Compassionate care • 24/7</div>
+        </div>
+      </a>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#appointments">Appointments</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div>
+          <h1 id="hero-title">World-class healthcare — close to you.</h1>
+          <p>Hopewell Hospital offers advanced diagnostics, emergency services, and specialist care backed by a compassionate team. Visit our clinics or book an appointment online.</p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#appointments" role="button">Book Appointment</a>
+            <a class="btn btn-outline" href="#services" role="button">View Services</a>
+          </div>
+
+          <div style="margin-top:1rem;display:flex;gap:1rem;flex-wrap:wrap">
+            <div class="hero-card" style="flex:1">
+              <div class="stat"><strong>24/7 Emergency</strong><span class="small">Immediate care</span></div>
+              <div class="stat"><strong>200+</strong><span class="small">Experienced Staff</span></div>
+              <div class="stat"><strong>15+</strong><span class="small">Specialties</span></div>
+            </div>
+
+            <div class="hero-card" style="width:220px">
+              <div class="small">Patient Helpline</div>
+              <div style="font-weight:700;font-size:1.15rem">+1 (555) 123-4567</div>
+              <div class="small">Insurance & billing help available</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Quick actions">
+          <div style="font-weight:700">Quick Actions</div>
+          <div style="margin-top:.5rem;display:grid;gap:.5rem">
+            <a class="btn btn-outline" href="#contact">Contact Us</a>
+            <a class="btn" style="background:transparent;border:1px dashed rgba(15,23,42,0.06);">Find a Doctor</a>
+            <a class="btn btn-primary" href="#appointments">Request Callback</a>
+          </div>
+        </aside>
+      </section>
+
+      <section id="services" class="services" aria-labelledby="services-title">
+        <h2 id="services-title" style="grid-column:1/-1;margin-top:1.25rem">Our Services</h2>
+
+        <article class="service-card">
+          <h3>Emergency & Trauma</h3>
+          <p>24/7 fully equipped emergency department with experienced trauma surgeons and rapid response teams.</p>
+        </article>
+
+        <article class="service-card">
+          <h3>Cardiology</h3>
+          <p>Advanced cardiology care including interventional cardiology, echo, and heart failure clinics.</p>
+        </article>
+
+        <article class="service-card">
+          <h3>Orthopedics</h3>
+          <p>Joint replacement, sports medicine, and minimally invasive surgery to get you moving again.</p>
+        </article>
+
+        <article class="service-card">
+          <h3>Imaging & Diagnostics</h3>
+          <p>MRI, CT, X-ray, and pathology services with quick turnaround times for accurate diagnoses.</p>
+        </article>
+
+        <article class="service-card">
+          <h3>Maternal & Newborn Care</h3>
+          <p>Comprehensive prenatal care, labor & delivery suites and a dedicated neonatal unit.</p>
+        </article>
+
+        <article class="service-card">
+          <h3>Mental Health Services</h3>
+          <p>Outpatient counseling, psychiatry, and inpatient care focusing on compassionate, stigma-free treatment.</p>
+        </article>
+      </section>
+
+      <section id="doctors" class="doctors" aria-labelledby="doctors-title">
+        <h2 id="doctors-title">Meet Our Doctors</h2>
+        <div class="doctor-grid">
+          <div class="doctor">
+            <div class="avatar">DR</div>
+            <div class="doc-meta">
+              <h4>Dr. Anita Rao</h4>
+              <p>Cardiologist • 18 years experience</p>
+            </div>
+          </div>
+
+          <div class="doctor">
+            <div class="avatar">MS</div>
+            <div class="doc-meta">
+              <h4>Dr. Michael Singh</h4>
+              <p>Orthopedic Surgeon • Hip & Knee Specialist</p>
+            </div>
+          </div>
+
+          <div class="doctor">
+            <div class="avatar">LN</div>
+            <div class="doc-meta">
+              <h4>Dr. Lina Nair</h4>
+              <p>Obstetrics & Gynecology</p>
+            </div>
+          </div>
+
+          <div class="doctor">
+            <div class="avatar">RK</div>
+            <div class="doc-meta">
+              <h4>Dr. Rajiv Kapoor</h4>
+              <p>Emergency Medicine • Head of ED</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="appointments" aria-labelledby="appt-title" style="margin-top:1.25rem">
+        <h2 id="appt-title">Book an Appointment</h2>
+        <div style="display:grid;grid-template-columns:1fr 360px;gap:1rem;margin-top:.75rem">
+          <form class="" aria-label="Appointment form">
+            <div class="grid-2">
+              <div>
+                <label for="fname">Full name</label>
+                <input id="fname" name="fullname" type="text" placeholder="Jane Doe" required>
+              </div>
+
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" placeholder="+1 (555) 123-4567" required>
+              </div>
+            </div>
+
+            <div class="grid-2">
+              <div>
+                <label for="date">Preferred date</label>
+                <input id="date" name="date" type="date" required>
+              </div>
+              <div>
+                <label for="dept">Department</label>
+                <select id="dept" name="department" required>
+                  <option value="">Choose department</option>
+                  <option>Cardiology</option>
+                  <option>Orthopedics</option>
+                  <option>Emergency</option>
+                  <option>OB-GYN</option>
+                  <option>Mental Health</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Notes (symptoms, preferences)</label>
+              <textarea id="notes" rows="3" placeholder="Brief description..."></textarea>
+            </div>
+
+            <div style="display:flex;gap:.6rem;margin-top:.5rem">
+              <button type="submit" class="btn btn-primary">Request Appointment</button>
+              <button type="reset" class="btn">Reset</button>
+            </div>
+          </form>
+
+          <aside class="hero-card">
+            <div style="font-weight:700">Visiting Hours</div>
+            <div class="small" style="margin-top:.5rem">Mon — Fri: 8:00 AM — 8:00 PM</div>
+            <div class="small">Sat: 9:00 AM — 3:00 PM</div>
+            <div class="small">Sun: Closed (Emergency open)</div>
+
+            <div style="margin-top:1rem">
+              <div class="small">Address</div>
+              <div style="font-weight:700">123 Healing Way, Springfield</div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="contact" style="margin-top:1.25rem">
+        <h2>Contact & Location</h2>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:.75rem">
+          <div class="hero-card">
+            <h3 style="margin-top:0">Get in touch</h3>
+            <p class="small">For general inquiries, referrals or billing questions — we're here to help.</p>
+            <p style="font-weight:700;margin:.5rem 0">Email: info@hopewell.example</p>
+            <p style="font-weight:700;margin:.5rem 0">Phone: +1 (555) 123-4567</p>
+          </div>
+
+          <div class="hero-card" aria-hidden="true">
+            <!-- Placeholder map embed — replace with real iframe if needed -->
+            <div style="height:160px;border-radius:8px;background:linear-gradient(180deg,#e6eefb,#f3fafc);display:grid;place-items:center;color:var(--muted)">Map placeholder</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div>© <strong>Hopewell Hospital</strong> <span class="small">2025</span></div>
+        <div class="flex">
+          <div class="pill">Safe & Secure</div>
+          <div class="small">Privacy • Terms • Accessibility</div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Optional minimal JS for accessibility: focus outline for keyboard users only -->
+  <script>
+    (function(){
+      function handleFirstTab(e){
+        if(e.key === 'Tab'){
+          document.documentElement.classList.add('user-is-tabbing');
+          window.removeEventListener('keydown', handleFirstTab);
+        }
+      }
+      window.addEventListener('keydown', handleFirstTab);
+    })();
+  </script>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>DOM Manipulation — Live Exercise</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.4}
+    body{max-width:900px;margin:32px auto;padding:16px}
+    header{display:flex;gap:16px;align-items:center}
+    .card{border:1px solid #ddd;padding:12px;border-radius:8px;margin-top:12px}
+    button{padding:8px 12px;border-radius:6px;border:1px solid #bbb;background:#fff;cursor:pointer}
+    .highlight{background:linear-gradient(90deg, rgba(255,230,150,0.6), rgba(255,255,255,0.0));}
+    input[type=text]{padding:6px;border-radius:6px;border:1px solid #ccc}
+    ul{padding-left:20px}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DOM Manipulation — Live Exercise</h1>
+    <small>Practice: create / update / remove elements & attributes</small>
+  </header>
+
+  <!-- Section 1: Changing text content -->
+  <section class="card" id="textCard">
+    <h2>Update text content</h2>
+    <p id="intro">This text will be changed when you click the button below.</p>
+    <button id="changeTextBtn">Change text</button>
+  </section>
+
+  <!-- Section 2: Using user input to update DOM -->
+  <section class="card" id="inputCard">
+    <h2>Use input to update DOM</h2>
+    <label>
+      New heading: <input type="text" id="headingInput" placeholder="Type a new heading" />
+    </label>
+    <button id="applyHeading">Apply</button>
+    <h3 id="liveHeading">Original heading</h3>
+  </section>
+
+  <!-- Section 3: Add / remove list items -->
+  <section class="card" id="listCard">
+    <h2>Manage a list</h2>
+    <input type="text" id="itemInput" placeholder="New todo item" />
+    <button id="addItem">Add item</button>
+    <button id="clearList">Clear list</button>
+    <ul id="todoList">
+      <li>Example item 1 <button class="remove">Remove</button></li>
+      <li>Example item 2 <button class="remove">Remove</button></li>
+    </ul>
+  </section>
+
+  <!-- Section 4: Create element & attributes -->
+  <section class="card" id="createCard">
+    <h2>Create element & attributes</h2>
+    <button id="createImgBtn">Create image element</button>
+    <div id="createdArea"></div>
+  </section>
+
+  <!-- Section 5: Toggle class and styles -->
+  <section class="card" id="toggleCard">
+    <h2>Toggle classes & attributes</h2>
+    <p id="togText">Click the toggle button to highlight this paragraph.</p>
+    <button id="toggleBtn">Toggle highlight</button>
+  </section>
+
+  <script>
+    // --- Helper: select shortcuts ---
+    const $ = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+    // 1) Change text content
+    const changeTextBtn = $('#changeTextBtn');
+    const intro = $('#intro');
+    changeTextBtn.addEventListener('click', () => {
+      // textContent updates the visible text without interpreting HTML
+      intro.textContent = 'Text has been updated at ' + new Date().toLocaleTimeString();
+    });
+
+    // 2) Use input to update DOM (and demonstrate .value and .innerHTML)
+    $('#applyHeading').addEventListener('click', () => {
+      const val = $('#headingInput').value.trim();
+      const live = $('#liveHeading');
+      if (!val) {
+        live.textContent = 'Original heading';
+        return;
+      }
+      // innerHTML would parse HTML — avoid with untrusted content; we use textContent
+      live.textContent = val;
+    });
+
+    // 3) Add/remove list items with event delegation
+    const todoList = $('#todoList');
+    $('#addItem').addEventListener('click', () => {
+      const text = $('#itemInput').value.trim();
+      if (!text) return;
+      const li = document.createElement('li');
+      li.innerHTML = `${escapeHtml(text)} <button class="remove">Remove</button>`;
+      todoList.appendChild(li);
+      $('#itemInput').value = '';
+    });
+
+    // Clear list
+    $('#clearList').addEventListener('click', () => {
+      // remove children safely
+      while (todoList.firstChild) todoList.removeChild(todoList.firstChild);
+    });
+
+    // Event delegation for remove buttons
+    todoList.addEventListener('click', (e) => {
+      if (e.target && e.target.matches('button.remove')) {
+        const li = e.target.closest('li');
+        li.remove(); // modern DOM method
+      }
+    });
+
+    // 4) Create element and set attributes
+    $('#createImgBtn').addEventListener('click', () => {
+      const area = $('#createdArea');
+      // If already created, toggle removal
+      const existing = $('#createdArea img');
+      if (existing) {
+        existing.remove();
+        return;
+      }
+      const img = document.createElement('img');
+      img.setAttribute('alt', 'Cute placeholder');
+      img.src = 'https://placekitten.com/320/180'; // small placeholder image
+      img.width = 320;
+      img.height = 180;
+      img.style.display = 'block';
+      img.style.marginTop = '8px';
+      area.appendChild(img);
+    });
+
+    // 5) Toggle class
+    $('#toggleBtn').addEventListener('click', () => {
+      $('#togText').classList.toggle('highlight');
+    });
+
+    // Utility: escape HTML to avoid XSS if you later wire server inputs
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, (c) => ({
+        '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+      }[c]));
+    }
+
+    // Extra: show live DOM info in console (example of reading attributes)
+    console.log('Document title (read):', document.title);
+
+    // Demonstrate attribute read/write
+    document.documentElement.setAttribute('data-demo', 'dom-exercise');
+    console.log('data-demo attr:', document.documentElement.getAttribute('data-demo'));
+
+    // Accessible focus states for keyboard users: allow Enter to add items
+    $('#itemInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        $('#addItem').click();
+      }
+    });
+
+  </script>
+</body>
+</html>
