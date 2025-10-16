@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Gear - Ultimate Gaming Accessories</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+   
+    <!-- Custom Tailwind Configuration (Gaming Dark Theme) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bg-dark': '#111827',    /* Dark Gray/Slate */
+                        'primary': '#f87171',    /* Red (Gaming Accent) */
+                        'secondary': '#3b82f6',  /* Blue (Buttons/CTA) */
+                        'card': '#1f2937',       /* Slightly Lighter Card Background */
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensures smooth scrolling for internal links */
+        html { scroll-behavior: smooth; }
+
+        /* Custom glow effect for the hero text */
+        .glow-text {
+            text-shadow: 0 0 5px rgba(248, 113, 113, 0.8), 0 0 10px rgba(248, 113, 113, 0.4);
+        }
+       
+        /* Ensures images look crisp and contained */
+        .product-image {
+            transition: transform 0.5s ease-in-out;
+        }
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        /* --- Star Rating System CSS --- */
+        .star-rating input {
+            display: none;
+        }
+        .star-rating label {
+            font-size: 2rem;
+            color: #4b5563; /* Dark gray for unselected stars */
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        /* Highlight stars when selected or hovered */
+        .star-rating input:checked ~ label,
+        .star-rating label:hover,
+        .star-rating label:hover ~ label {
+            color: #f59e0b; /* Amber/Yellow for selected stars */
+        }
+        /* Make sure the rating is right-to-left for CSS rating technique */
+        .star-rating {
+            direction: rtl;
+        }
+        .star-rating > label {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="bg-bg-dark font-sans text-gray-100 min-h-screen">
+
+    <!-- 1. Header and Navigation -->
+    <header class="sticky top-0 z-50 bg-card shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/Title -->
+                <a href="#" class="text-3xl font-extrabold text-primary tracking-wider glow-text">
+                    APEX GEAR
+                </a>
+               
+                <!-- Navigation Links -->
+                <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#products" class="text-gray-300 hover:text-primary transition duration-150">Shop All</a>
+                    <a href="#mice" class="text-gray-300 hover:text-primary transition duration-150">Mice & Pads</a>
+                    <a href="#audio" class="text-gray-300 hover:text-primary transition duration-150">Audio Gear</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-primary transition duration-150">Reviews</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="flex items-center space-x-4">
+                    <a href="#" class="px-4 py-2 bg-secondary text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-600 transition duration-150 transform hover:scale-105">
+                        <span class="hidden sm:inline">My Cart</span> (0)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 2. Hero Section -->
+        <section class="relative bg-card py-24 border-b-4 border-primary/50 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold mb-4 text-white glow-text">
+                    GEAR UP. DOMINATE.
+                </h1>
+                <p class="text-xl sm:text-2xl font-light mb-8 text-gray-300">
+                    The ultimate selection of peripherals for competitive gamers in India.
+                </p>
+                <a href="#products" class="inline-block px-10 py-4 bg-primary text-card text-lg font-bold rounded-xl shadow-2xl hover:bg-red-500 transition duration-300 transform hover:-translate-y-1">
+                    EXPLORE THE ARSENAL
+                </a>
+            </div>
+            <!-- Background element for visual flair (simulated circuit board/lines) -->
+            <div class="absolute inset-0 opacity-5">
+                <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                    <defs>
+                        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 L 0 10" fill="none" stroke="#374151" stroke-width="0.3"></path>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)"></rect>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 3. Product Showcase -->
+        <section id="products" class="py-16 sm:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl font-extrabold text-white mb-12 text-center border-b-4 border-primary pb-2 inline-block mx-auto">
+                    All Accessories
+                </h2>
+               
+                <!-- Category 1: Keyboards -->
+                <div id="keyboards" class="mb-16 pt-4">
+                    <h3 class="text-3xl font-bold text-primary mb-8 border-l-4 border-secondary pl-4">Keyboards</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                       
+                        <!-- Product Card 1: Mechanical Keyboard -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1627022212953-e9ef0c99a385?q=80&w=600&auto=format&fit=crop"
+                                 alt="Mechanical Keyboard"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=Keyboard+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Apex Mech Pro TKL</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹7,999</p>
+                                <p class="text-gray-400 text-sm mb-4">Tactile brown switches for speed and precision. Compact tenkeyless design.</p>
+                                <button onclick="addToCart('Apex Mech Pro TKL')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=1" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2: Mouse Pad -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1596773089405-b04b9016147d?q=80&w=600&auto=format&fit=crop"
+                                 alt="Mouse Pad"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=Pad+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Titan XL Desk Mat</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹1,450</p>
+                                <p class="text-gray-400 text-sm mb-4">Massive 900x400mm size. Optimized surface for optical and laser sensors.</p>
+                                <button onclick="addToCart('Titan XL Desk Mat')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=2" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+                       
+                        <!-- Product Card 3: Budget Keyboard -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1534972195531-d756b9bfa923?q=80&w=600&auto=format&fit=crop"
+                                 alt="Budget Keyboard"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=Budget+Keyboard+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Student Gaming Keyboard</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹2,890</p>
+                                <p class="text-gray-400 text-sm mb-4">Membrane keys with anti-ghosting. A perfect starter keyboard for college.</p>
+                                <button onclick="addToCart('Student Gaming Keyboard')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=3" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+                       
+                        <!-- Product Card 4: 60% Keyboard -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1618641986480-e836ec3db2e8?q=80&w=600&auto=format&fit=crop"
+                                 alt="60% Keyboard"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=60%Keyboard+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Ultra Compact 60% KB</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹6,200</p>
+                                <p class="text-gray-400 text-sm mb-4">Minimalist layout for maximum mouse space. Linear Red switches.</p>
+                                <button onclick="addToCart('Ultra Compact 60% KB')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=4" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                <!-- Category 2: Mice & Pads -->
+                <div id="mice" class="mb-16 pt-4">
+                    <h3 class="text-3xl font-bold text-primary mb-8 border-l-4 border-secondary pl-4">Mice & Pads</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                       
+                        <!-- Product Card 5: Wireless Mouse -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1616712134513-5f7b494d4d68?q=80&w=600&auto=format&fit=crop"
+                                 alt="Wireless Mouse"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=Mouse+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Zero Lag Wireless Mouse</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹5,999</p>
+                                <p class="text-gray-400 text-sm mb-4">Featherlight design (60g) with 200-hour battery life. Pro sensor.</p>
+                                <button onclick="addToCart('Zero Lag Wireless Mouse')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=5" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 6: RGB Mouse Pad -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1549419163-14660d268d37?q=80&w=600&auto=format&fit=crop"
+                                 alt="RGB Mouse Pad"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=RGB+Pad+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Spectrum XL RGB Pad</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹2,100</p>
+                                <p class="text-gray-400 text-sm mb-4">Edge-lit RGB lighting with 16 vibrant colors. Non-slip rubber base.</p>
+                                <button onclick="addToCart('Spectrum XL RGB Pad')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=6" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category 3: Audio Gear -->
+                <div id="audio" class="mb-16 pt-4">
+                    <h3 class="text-3xl font-bold text-primary mb-8 border-l-4 border-secondary pl-4">Audio Gear</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                       
+                        <!-- Product Card 7: Headset -->
+                        <div class="bg-card rounded-xl shadow-2xl transition duration-300 overflow-hidden product-card">
+                            <img src="https://images.unsplash.com/photo-1545625471-1554181f08e7?q=80&w=600&auto=format&fit=crop"
+                                 alt="Gaming Headset"
+                                 class="w-full h-48 object-cover object-center product-image"
+                                 onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f87171?text=Headset+Error'">
+                            <div class="p-5">
+                                <h4 class="text-xl font-semibold text-white truncate">Pro Surround Sound Headset</h4>
+                                <p class="text-primary font-bold text-3xl my-2">₹8,999</p>
+                                <p class="text-gray-400 text-sm mb-4">7.1 virtual surround sound and a crystal-clear noise-cancelling mic.</p>
+                                <button onclick="addToCart('Pro Surround Sound Headset')" class="w-full py-3 bg-secondary text-white font-medium rounded-lg hover:bg-blue-600 transition duration-150 shadow-md">
+                                    Add to Cart
+                                </button>
+                                <a href="product-details.html?id=7" target="_blank" class="block text-center mt-3 text-primary hover:underline text-sm transition duration-150">Quick View (External Link)</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+       
+        <!-- 4. Customer Reviews Section (UPDATED) -->
+        <section id="reviews" class="bg-bg-dark py-16 sm:py-24 border-t border-gray-700">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                 <h2 class="text-4xl font-extrabold text-white mb-12 text-center">
+                    Gamer Community Feedback
+                </h2>
+               
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Review Submission Form -->
+                    <div class="lg:col-span-1 p-6 bg-card rounded-xl shadow-lg border-t-4 border-primary sticky top-20 h-fit">
+                        <h3 class="text-2xl font-bold text-white mb-6 border-b border-gray-700 pb-2">Post Your Review</h3>
+                        <form id="comment-form" onsubmit="submitComment(event)">
+                            <!-- Name Input -->
+                            <div class="mb-4">
+                                <label for="reviewer-name" class="block text-sm font-medium text-gray-300 mb-1">Your Name/Handle</label>
+                                <input type="text" id="reviewer-name" required placeholder="E.g., ProGamerXYZ"
+                                    class="w-full bg-bg-dark border border-gray-700 text-white rounded-lg p-3 focus:ring-secondary focus:border-secondary transition duration-150">
+                            </div>
+
+                            <!-- Rating Input -->
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Your Rating</label>
+                                <div class="star-rating space-x-2 text-xl inline-flex">
+                                    <input type="radio" id="star5" name="rating" value="5" required />
+                                    <label for="star5" title="5 stars">★</label>
+                                    <input type="radio" id="star4" name="rating" value="4" />
+                                    <label for="star4" title="4 stars">★</label>
+                                    <input type="radio" id="star3" name="rating" value="3" />
+                                    <label for="star3" title="3 stars">★</label>
+                                    <input type="radio" id="star2" name="rating" value="2" />
+                                    <label for="star2" title="2 stars">★</label>
+                                    <input type="radio" id="star1" name="rating" value="1" />
+                                    <label for="star1" title="1 star">★</label>
+                                </div>
+                            </div>
+
+                            <!-- Comment Textarea -->
+                            <div class="mb-6">
+                                <label for="review-text" class="block text-sm font-medium text-gray-300 mb-1">Your Comment</label>
+                                <textarea id="review-text" rows="4" required placeholder="What do you love about the gear?"
+                                    class="w-full bg-bg-dark border border-gray-700 text-white rounded-lg p-3 focus:ring-secondary focus:border-secondary transition duration-150"></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="w-full py-3 bg-secondary text-white font-bold rounded-lg shadow-lg hover:bg-blue-600 transition duration-300 transform hover:scale-[1.01]">
+                                Submit Review
+                            </button>
+                        </form>
+                    </div>
+
+
+                    <!-- Review Display Container -->
+                    <div id="comments-container" class="lg:col-span-2 space-y-6">
+                        <h3 class="text-xl font-semibold text-white mb-4">Recent Reviews</h3>
+                       
+                        <!-- Default Review 1 -->
+                        <div class="bg-card p-6 rounded-xl shadow-lg border-l-4 border-primary/80 review-card">
+                            <div class="flex items-center mb-3 text-yellow-400">★★★★★</div>
+                            <p class="text-gray-300 italic mb-4">"The TKL keyboard is a beast! Super responsive and the build quality is far better than the price suggests. Fast delivery to Chennai."</p>
+                            <p class="font-semibold text-primary">- Ankit M., Pro Gamer</p>
+                        </div>
+
+                        <!-- Default Review 2 -->
+                        <div class="bg-card p-6 rounded-xl shadow-lg border-l-4 border-primary/80 review-card">
+                            <div class="flex items-center mb-3 text-yellow-400">★★★★☆</div>
+                            <p class="text-gray-300 italic mb-4">"Wireless mouse is fantastic, almost zero input lag. Just wish the blue RGB option was brighter. Still, highly recommended."</p>
+                            <p class="font-semibold text-primary">- Kavya S., University Student</p>
+                        </div>
+
+                        <!-- Default Review 3 -->
+                        <div class="bg-card p-6 rounded-xl shadow-lg border-l-4 border-primary/80 review-card">
+                            <div class="flex items-center mb-3 text-yellow-400">★★★★★</div>
+                            <p class="text-gray-300 italic mb-4">"Excellent headset! My teammates noticed the mic clarity immediately. The comfort is great for long sessions."</p>
+                            <p class="font-semibold text-primary">- Rohan P., Streamer</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 5. Footer -->
+    <footer class="bg-card text-gray-400 py-10 border-t border-gray-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-sm">
+                &copy; 2025 Apex Gear. College Project Simulation. All prices in Indian Rupees (₹).
+            </p>
+            <div class="mt-4 space-x-4 text-xs">
+                <a href="#" class="hover:text-primary transition duration-150">Privacy Policy</a>
+                <a href="#" class="hover:text-primary transition duration-150">Terms of Service</a>
+                <a href="mailto:projectsupport@apexgear.in" class="hover:text-primary transition duration-150">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Global Message Box (for alerts/confirmations) -->
+    <div id="message-box" class="fixed top-5 right-5 z-[9999] opacity-0 transition-opacity duration-300 pointer-events-none">
+        <div id="message-content" class="px-6 py-3 rounded-lg shadow-xl text-white font-semibold"></div>
+    </div>
+
+    <!-- JavaScript for Interactivity -->
+    <script>
+        // Global utility to show messages instead of alert()
+        function showMessage(message, type = 'info') {
+            const box = document.getElementById('message-box');
+            const content = document.getElementById('message-content');
+           
+            // Set styles based on type
+            let bgColor = 'bg-gray-600';
+            if (type === 'success') bgColor = 'bg-secondary';
+            if (type === 'info') bgColor = 'bg-primary';
+            if (type === 'error') bgColor = 'bg-red-700';
+           
+            content.className = `px-6 py-3 rounded-lg shadow-xl text-white font-semibold ${bgColor}`;
+            content.textContent = message;
+           
+            // Show the message
+            box.classList.remove('opacity-0', 'pointer-events-none');
+           
+            // Hide the message after 3 seconds
+            setTimeout(() => {
+                box.classList.add('opacity-0', 'pointer-events-none');
+            }, 3000);
+        }
+
+        // Dummy function for "Add to Cart"
+        function addToCart(productName) {
+            showMessage(`Added "${productName}" to cart! (Simulated purchase)`, 'success');
+        }
+
+        // Function to dynamically generate star icons based on rating
+        function generateStarHTML(rating) {
+            let stars = '';
+            for (let i = 5; i >= 1; i--) {
+                const color = i <= rating ? 'text-yellow-400' : 'text-gray-600';
+                stars += `<span class="${color} text-xl">★</span>`;
+            }
+            return `<div class="flex items-center mb-3">${stars}</div>`;
+        }
+
+        // Function to handle review submission
+        function submitComment(event) {
+            event.preventDefault(); // Stop the form from submitting normally
+
+            const name = document.getElementById('reviewer-name').value.trim();
+            const text = document.getElementById('review-text').value.trim();
+            const ratingInput = document.querySelector('input[name="rating"]:checked');
+           
+            if (!name || !text || !ratingInput) {
+                showMessage('Please provide your name, comment, and select a star rating.', 'info');
+                return;
+            }
+           
+            const rating = parseInt(ratingInput.value);
+            const reviewsContainer = document.getElementById('comments-container');
+
+            // 1. Create the new review card element
+            const newReview = document.createElement('div');
+            newReview.className = 'bg-card p-6 rounded-xl shadow-lg border-l-4 border-primary/80 review-card transform transition duration-500 ease-in-out scale-100';
+            newReview.innerHTML = `
+                ${generateStarHTML(rating)}
+                <p class="text-gray-300 italic mb-4">"${text}"</p>
+                <p class="font-semibold text-primary">- ${name}</p>
+            `;
+
+            // 2. Add a slight animation effect (scale down, then scale up on load)
+            newReview.style.opacity = '0';
+            newReview.style.transform = 'scale(0.9)';
+           
+            // 3. Prepend the new review to the container (makes it appear first)
+            // Note: We skip the first element if it's the section header (Recent Reviews)
+            const recentReviewsHeader = reviewsContainer.querySelector('h3');
+            if (recentReviewsHeader && reviewsContainer.children.length > 0) {
+                 reviewsContainer.insertBefore(newReview, recentReviewsHeader.nextSibling);
+            } else {
+                 reviewsContainer.prepend(newReview);
+            }
+
+            // 4. Animate it in
+            setTimeout(() => {
+                newReview.style.opacity = '1';
+                newReview.style.transform = 'scale(1)';
+            }, 50);
+           
+            // 5. Reset the form and show success message
+            document.getElementById('comment-form').reset();
+            showMessage('Review posted! Check out your comment below.', 'success');
+        }
+
+
+        // Smooth Scrolling for Navigation Links (Making links "work")
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href').substring(1);
+                if (targetId && document.getElementById(targetId)) {
+                    e.preventDefault();
+                    document.getElementById(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
